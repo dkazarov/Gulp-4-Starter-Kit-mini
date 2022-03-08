@@ -7,6 +7,7 @@ const html = require("./tasks/html");
 const scss = require("./tasks/scss");
 const css = require("./tasks/css");
 const js = require("./tasks/js");
+const images = require("./tasks/images");
 
 const server = () => {
   browserSync.init({
@@ -21,9 +22,11 @@ const watcher = () => {
   watch("./src/css/**/*.css",         css).on("all", browserSync.reload);
   watch("./src/scss/*.{scss, sass}", scss).on("all", browserSync.reload);
   watch("./src/js/**/*.js",            js).on('all', browserSync.reload);
+  watch("./src/images",            images).on('all', browserSync.reload);
 };
 
 exports.clear = clear;
+exports.images = images;
 exports.html = html;
 exports.css = css;
 exports.scss = scss;
@@ -32,6 +35,6 @@ exports.watch = watcher;
 
 exports.dev = series(
   clear,
-  parallel(html, css, scss, js),
+  parallel(html, css, scss, js, images),
   parallel(watcher, server)
 );
