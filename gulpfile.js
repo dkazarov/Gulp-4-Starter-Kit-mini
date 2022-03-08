@@ -4,6 +4,7 @@ var browserSync = require('browser-sync').create();
 
 const clear = require('./tasks/clear');
 const html = require('./tasks/html');
+const css = require('./tasks/css');
 
 const server = () => {
    browserSync.init({
