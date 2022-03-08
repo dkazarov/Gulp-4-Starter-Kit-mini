@@ -2,7 +2,7 @@
 
 ---
 
-# Gulp 4 Gulp Mini Starter Kit v1.0
+# Gulp 4 Mini Starter Kit v1.0
 
 ---
 
