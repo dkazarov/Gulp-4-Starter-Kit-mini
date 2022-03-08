@@ -9,9 +9,9 @@ const css = () => {
   return src("./src/css/style.css")
     .pipe(concat("style.min.css"))
     .pipe(autoprefixer({}))
-    .pipe(size({title: "css before compress"}))
+    .pipe(size({title: "css before compressing"}))
     .pipe(csso())
-    .pipe(size({title: "css after compress"}))
+    .pipe(size({title: "css after compressing"}))
     .pipe(dest("./dist/css/"));
   //  .pipe(browserSync.stream());
 };
