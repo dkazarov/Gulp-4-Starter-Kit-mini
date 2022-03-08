@@ -15,14 +15,16 @@ const server = () => {
 
 const watcher = () => {
    watch('./src/**/*.html', html).on('all', browserSync.reload);
+   watch('./src/css/**/*.css', css).on('all', browserSync.reload);
 }
 
 exports.html = html;
+exports.css = css;
 exports.watch = watcher;
 exports.clear = clear;
 
 exports.dev = series (
    clear,
-   html, 
+   parallel(html, css),
    parallel (watcher, server)
 );
