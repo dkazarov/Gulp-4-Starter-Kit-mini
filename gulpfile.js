@@ -18,12 +18,22 @@ const server = () => {
 };
 
 const watcher = () => {
-  watch("./src/**/*.html",           html).on("all", browserSync.reload);
-  watch("./src/css/**/*.css",         css).on("all", browserSync.reload);
+  watch("./src/**/*.html", html).on("all", browserSync.reload);
+  watch("./src/css/**/*.css", css).on("all", browserSync.reload);
   watch("./src/scss/*.{scss, sass}", scss).on("all", browserSync.reload);
-  watch("./src/js/**/*.js",            js).on('all', browserSync.reload);
-  watch("./src/images",            images).on('all', browserSync.reload);
+  watch("./src/js/**/*.js", js).on("all", browserSync.reload);
+  watch("./src/images", images).on("all", browserSync.reload);
 };
+
+const build = series(
+  clear, 
+  parallel(html, css, scss, js, images)
+);
+
+const dev = series(
+  build, 
+  parallel(watcher, server)
+);
 
 exports.clear = clear;
 exports.images = images;
@@ -33,8 +43,6 @@ exports.scss = scss;
 exports.js = js;
 exports.watch = watcher;
 
-exports.dev = series(
-  clear,
-  parallel(html, css, scss, js, images),
-  parallel(watcher, server)
-);
+exports.default = dev;
+exports.build = build;
+exports.dev = dev;
