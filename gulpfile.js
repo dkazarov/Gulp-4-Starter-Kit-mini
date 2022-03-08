@@ -2,8 +2,8 @@ const { src, dest, watch, series, parallel } = require('gulp');
 
 var browserSync = require('browser-sync').create();
 
+const clear = require('./tasks/clear');
 const html = require('./tasks/html');
-const clear = require('./tasks/del');
 
 const server = () => {
    browserSync.init({
@@ -13,9 +13,8 @@ const server = () => {
   });
 }
 
-
 const watcher = () => {
-   watch('./src/**/*.html', html).on('change', browserSync.reload);
+   watch('./src/**/*.html', html).on('all', browserSync.reload);
 }
 
 exports.html = html;
