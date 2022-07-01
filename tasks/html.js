@@ -3,7 +3,7 @@ const browserSync = require('browser-sync');
 
 const size = require('gulp-size');
 const htmlmin = require('gulp-htmlmin');
-var webpHTML = require('gulp-webp-html');
+const webpHTML = require('gulp-webp-html');
 
 const html = () => {
   return src('./src/index.html')
